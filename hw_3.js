@@ -105,22 +105,16 @@ const products_2 = [
 let result = products_2.filter(word => word.photos && word.photos.length>0);
 console.log(result)
 
-products_2.sort(function (a, b) {
-  if (a.price > b.price) {
-    return 1;
-  }
-  if (a.price < b.price) {
-    return -1;
-  }
-  if (a.price == b.price) {
-    return 0;
-  }
-});
+products_2.sort(function(a,b){
+    return a.price - b.price
+})
 console.log(products_2)
+
 
 // Задание №6
 // Вывести с помощью цикла for числа от 0 до 9, НЕ используя тело цикла
 for(let i = 0; i <=9; console.log(i++)){}
+
 
 // Задание №7
 // Нарисовать горку с помощью console.log (используя цикл for), как показано на рисунке,
