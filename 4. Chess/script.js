@@ -6,8 +6,9 @@ function renderBoard() {
         let color_1 = "white";
         let color_2 = "black";
         let arrABC = ['A','B', 'C', 'D', 'I', 'F', 'G', 'H'];
-        let figure_1 = ['П', 'П', 'П', 'П', 'П', 'П', 'П', 'П'];
-        let figure_2 = [ 'Л','К','С','Кр','Ф','С','К','Л'];
+        //let figure_1 = ['П', 'П', 'П', 'П', 'П', 'П', 'П', 'П'];
+        let figure_1 = ['♙'];
+        let figure_2 = [ '♖','♘','♗','♚','♛','♗','♘','♖'];
     
         for (let y = 0; y < 10; y++) {
                 board += "<tr>";
@@ -22,10 +23,10 @@ function renderBoard() {
                         } else if (y==1 && x>0 && x<9){
                             board += `<td data-x="${x}" data-y="${y}" class="${color_1} color_w">${figure_2[x-1]}</td>`;
                         } else if (y==2 && x>0 && x<9){
-                            board += `<td data-x="${x}" data-y="${y}" class="${color_1} color_w">${figure_1[x-1]}</td>`;
+                            board += `<td data-x="${x}" data-y="${y}" class="${color_1} color_w">${figure_1[0]}</td>`;
                         } else {
                             if (y==7 && x>0 && x<9){
-                            board += `<td data-x="${x}" data-y="${y}" class="${color_1} color_b">${figure_1[x-1]}</td>`;
+                            board += `<td data-x="${x}" data-y="${y}" class="${color_1} color_b">${figure_1[0]}</td>`;
                         } else {
                             board += `<td data-x="${x}" data-y="${y}" class="${color_1}"></td>`;
                             }
@@ -36,10 +37,10 @@ function renderBoard() {
                         } else if (y==1 && x>0 && x<9){
                             board += `<td data-x="${x}" data-y="${y}" class="${color_2} color_w">${figure_2[x-1]}</td>`;
                         } else if (y==2 && x>0 && x<9){
-                            board += `<td data-x="${x}" data-y="${y}" class="${color_2} color_w">${figure_1[x-1]}</td>`;
+                            board += `<td data-x="${x}" data-y="${y}" class="${color_2} color_w">${figure_1[0]}</td>`;
                         } else {
                             if (y==7 && x>0 && x<9){
-                            board += `<td data-x="${x}" data-y="${y}" class="${color_2} color_b">${figure_1[x-1]}</td>`;
+                            board += `<td data-x="${x}" data-y="${y}" class="${color_2} color_b">${figure_1[0]}</td>`;
                         } else {
                             board += `<td data-x="${x}" data-y="${y}" class="${color_2}"></td>`;
                             }
