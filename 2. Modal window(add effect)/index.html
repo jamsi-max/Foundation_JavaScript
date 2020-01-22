@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal window</title>
+</head>
+<body>
+    <button>НАЖМИ</button>
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        let button =document.querySelector('button');
+        console.log(button);
+        button.addEventListener('click', function(){
+            swal("Отлично!", "Теперь нажми на кнопку ОК!", "success");
+        })
+    </script>
+</body>
+</html>
