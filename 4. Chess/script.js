@@ -6,7 +6,6 @@ function renderBoard() {
         let color_1 = "white";
         let color_2 = "black";
         let arrABC = ['A','B', 'C', 'D', 'I', 'F', 'G', 'H'];
-        //let figure_1 = ['П', 'П', 'П', 'П', 'П', 'П', 'П', 'П'];
         let figure_1 = ['♙'];
         let figure_2 = [ '♖','♘','♗','♚','♛','♗','♘','♖'];
     
