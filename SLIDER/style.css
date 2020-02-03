@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin: 0;
+    
+}
+
+html,
+body {
+    min-height: 100%;
+} 
+ 
+.slider {
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    /* display: block; */
+    position: relative;
+}
+
+.slider-item {
+    width: 100%;
+    height: inherit;
+    position: absolute;
+}
+
+.slider-item img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.slider-leftArrow, .slider-rightArrow {
+    position: absolute;
+    top: 47%;
+    z-index: 30;
+    color: #bbbbbbb2;
+    cursor: pointer;
+    font-size: 50px;
+}
+
+.slider-leftArrow {
+    left: 5%;
+}
+
+.slider-rightArrow{
+    right: 5%;
+}
+
+.fa-spin {
+    position: absolute;
+    color: #bbbbbbb2;
+    top: 44%;
+    left: 44%;
+    z-index: 15;
+}
+
+.left-start-position {
+    z-index: 10;
+    transform: translateX(-100%);
+}
+
+.left-slide-animation {
+    transform: translateX(100%);
+    transition: transform 1.5s;
+}
+
+.right-start-position {
+    z-index: 10;
+    transform: translateX(100%);
+}
+
+.right-slide-animation {
+    transform: translateX(-100%);
+    transition: transform 1.5s;
+}
+
+.current-slide-animation {
+    z-index: 0;
+    transform: translateX(0%);
+    transition: transform 1.5s;
+}
+
+.action-stop {
+    pointer-events: none;
+}
+
+.text {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 75px;
+    letter-spacing: 40px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    z-index: 10;
+}
+
+#pagination {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    z-index: 30;
+}
+
+.pagination-item{
+    z-index: 30;
+    color: #bbbbbbb2;
+    font-size: 10px;
+    letter-spacing: 10px;
+}
+
+.fa-circle-o, fa-square-o  {
+font-family: FontAwesome;
+}
