@@ -28,25 +28,17 @@ window.addEventListener('load', () => {
         
         leftArrow.addEventListener('click', () => {
             images.leftShiftSlide();
-            clearInterval(timerId);
         });
     
         rightArrow.addEventListener('click', () => {
             images.rightFolowSlide();
-            clearInterval(timerId);
         });
 
         images.init();
 
-        // сдвиг слайдов автоматом
-        let timerId = setInterval(() => {
-            images.rightFolowSlide();
-         }, 3000);
 
          // динамичный цвет надписи
-         setInterval(() => {
-            document.querySelector('.text').style.color = images.setColorTitelSlider();
-         }, 100);
+         
     }
 })
 
@@ -56,16 +48,26 @@ const images = {
     indexCurrentSlide: 4,
     currentSlide: '',
     leftSlide: '',
+    rightSlide: '',
+    timerId: {},
 
     init() {
+        // получаем слайды из html и помещаем их в массив 
         this.slides = Array.prototype.slice.call(document.querySelectorAll('.slider-item'));
+        // рендерим пагинацию
         this.renderPagination();
+        // запускаем автосдвиг
+        this.avtoShift(4000);
+        // включаем динамический цвет надписи
+        this.titelTextColorDinamic();
     },
 
+    //функция подготовки сдвига влево
     leftShiftSlide() {
-        // Запретить событие click
+        // Запретить событие click и остановить слайдер
         leftArrow.classList.add('action-stop');
         rightArrow.classList.add('action-stop');
+        clearInterval(this.timerId);
         
         // получаем нужные элементы
         this.currentSlide = this.slides.pop();
@@ -87,33 +89,40 @@ const images = {
         this.slides.unshift(this.currentSlide);
         this.slides.push(this.leftSlide);
 
+        // выставляем индекс текущего слайда для пагинации
         if (this.indexCurrentSlide == 0) {
             this.indexCurrentSlide = 4;
         } else {
             this.indexCurrentSlide -= 1;
         }
+        // рендерим пагинацию
         this.renderPagination();
+
+        // запускаем автопоказ сладера
+        this.avtoShift(4000);
     },
 
+    // функция подготовки сдвига вправо
     rightFolowSlide() {
-        // Аналогично анимации влево делаем анимацию в право
+        // Аналогично делаем анимацию вправо
         leftArrow.classList.add('action-stop');
         rightArrow.classList.add('action-stop');
+        clearInterval(this.timerId);
 
-        let currentSlide = this.slides.pop();
-        let rightSlide = this.slides.shift();
+        this.currentSlide = this.slides.pop();
+        this.rightSlide = this.slides.shift();
 
-        rightSlide.classList.add('right-start-position');
-        rightSlide.style.zIndex = '10';
+        this.rightSlide.classList.add('right-start-position');
+        this.rightSlide.style.zIndex = '10';
 
-        this.shiftSlide(rightSlide, currentSlide, 'right');
+        this.shiftSlide(this.rightSlide, this.currentSlide, 'right');
 
-        currentSlide.addEventListener('transitionend', () => {
+        this.currentSlide.addEventListener('transitionend', () => {
             this.clearClassSlides();
         });
 
-        this.slides.push(currentSlide);
-        this.slides.push(rightSlide);
+        this.slides.push(this.currentSlide);
+        this.slides.push(this.rightSlide);
 
         if (this.indexCurrentSlide == 4) {
             this.indexCurrentSlide = 0;
@@ -121,10 +130,14 @@ const images = {
             this.indexCurrentSlide += 1;
         }
         this.renderPagination();
+        this.avtoShift(4000);
     },
 
+    // функция сдвига слайдев влево или в право с использованием функции
+    // для обхода оптимизации браузера который не даёт менять по очереди значение
+    // с 0 до 100 выставляя сразу 100 элементу
     shiftSlide(firstSlide, secondSlide, arrow) {
-        raf(() => {
+        this.raf(() => {
             firstSlide.classList.add('current-slide-animation');
             if (arrow == 'left') {
                 secondSlide.classList.add('left-slide-animation');
@@ -134,6 +147,7 @@ const images = {
         }); 
     },
 
+    //очищаем классы у слайдов оставляя текущему слайду z-index для показа
     clearClassSlides() {
         this.slides.forEach(element => {
             if (element.classList.contains('left-start-position')) {
@@ -170,6 +184,7 @@ const images = {
         });
     },
 
+    // функция рендер пагинации
     renderPagination() {
         //Очищаем погинацию
         let clearPaginationElements = document.querySelectorAll('.pagination-item');
@@ -189,6 +204,13 @@ const images = {
         };   
     },
 
+    // автосдвиг слайдера по выставленному интервалу
+    avtoShift(interval) {
+        this.timerId = setInterval(() => {
+            images.rightFolowSlide();
+         }, interval);
+    },
+
     // Рандом цвета для надписи
     setColorTitelSlider() {
         let colorList = ['rgb(87, 146, 197)', 
@@ -197,17 +219,24 @@ const images = {
                         'rgb(240, 226, 107)',
                         'rgb(240, 107, 107)'];
         return colorList[Math.floor(Math.random() * 4)];
+    },
+
+    titelTextColorDinamic() {
+        setInterval(() => {
+            document.querySelector('.text').style.color = images.setColorTitelSlider();
+         }, 100);
+    },
+
+    // функция обхода оптимизации браузера
+    raf(fn){
+        window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+                fn();
+            });
+        });
     }
 }
 
-//функция обхода оптимизации браузеров позволяет выполнять методы по порядку
-function raf(fn){
-    window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-            fn();
-        });
-    });
-}
 
 
 

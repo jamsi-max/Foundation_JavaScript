@@ -33,7 +33,7 @@ body {
     position: absolute;
     top: 47%;
     z-index: 30;
-    color: #bbbbbbb2;
+    color: #cfccccb2;
     cursor: pointer;
     font-size: 50px;
 }
@@ -107,9 +107,9 @@ body {
 
 .pagination-item{
     z-index: 30;
-    color: #bbbbbbb2;
-    font-size: 10px;
-    letter-spacing: 10px;
+    color: #c5bfbfda;
+    font-size: 15px;
+    letter-spacing: 15px;
 }
 
 .fa-circle-o, fa-square-o  {
