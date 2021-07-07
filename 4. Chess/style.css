@@ -1,0 +1,48 @@
+table {
+    border-collapse: collapse;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top:50%;
+    left: 50%;
+    
+}
+
+td {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+.white {
+    background: #ffefc9;
+}
+
+.black {
+    background: #000000;
+}
+
+
+
+td {
+    text-align: center;
+}
+
+td[data-y="0"],
+td[data-x="9"]{
+    transform: rotate(180deg);
+}
+
+.field {
+    border: none;
+    background: none;
+    text-align: center;
+    color: black;
+}
+
+.color_w {
+    color: white;
+}
+
+.color_b {
+    color: #5a5a5a;
+}

@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 80px;
+}
+
+button{
+    margin-top: 20px;
+    align-self: auto;
+    width: 120px;
+    height: 30px;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+}
+
+button:hover{
+    color: red;
+}
+
+img {
+    opacity: 1;
+    z-index: 10;
+}
+
+span{
+    position: fixed;
+    background-color: white;
+    opacity: 0;
+    width: 130px;
+    padding-left: 15px;
+    height: 130px;
+    display: one;
+    font-size: 0.7em;
+}
+
+.active {
+    opacity: 1;
+    transition: 300ms;
+}
+
+.noActive {
+    opacity: 0.2;
+    transition: 300ms;
+    
+}
+
